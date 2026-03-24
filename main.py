@@ -2,11 +2,11 @@ from fastapi import FastAPI
 import random
 app = FastAPI()
 
-@app.get("/")
+@app.get("/teste1")
 async def root():
     return {"message": "Hello World"}
 
-@app.get ("/teste1")
+@app.get ("/teste")
 async def funcaoteste():
     return {"teste": "deu certo"}
 

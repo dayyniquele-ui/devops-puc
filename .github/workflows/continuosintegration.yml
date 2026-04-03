@@ -17,3 +17,15 @@ jobs:
           path: |
             '**.py'
             REDME.md
+  
+
+  deploy:
+    needs: deliver
+    runs-on: ubuntu-latest
+    steps:
+      steps:
+      - uses: actions/download-artifact@v8
+          with:
+          name: my-artifact
+      - name: Display structure of downloaded files
+        run: ls -R

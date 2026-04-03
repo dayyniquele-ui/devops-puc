@@ -1,0 +1,31 @@
+name: Continuos Delivery workflow
+on: 
+  push:
+    branches:  
+    - main 
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+      
+      - name: Simulando |Continuos Delivery
+        uses: actions/upload-artifact@v4
+        with:
+          name: projetozipado.zip
+          path: |
+            '**.py'
+            REDME.md
+  
+
+  deploy:
+    needs: deliver
+    runs-on: ubuntu-latest
+    steps:
+      steps:
+      - uses: actions/download-artifact@v8
+          with:
+          name: my-artifact
+      - name: Display structure of downloaded files
+        run: ls -R

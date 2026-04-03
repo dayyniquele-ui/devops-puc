@@ -20,7 +20,7 @@ jobs:
         with:
           name: projetozipado.zip
           path: |
-            '**.py'
+            **.py
             REDME.md
   
 
@@ -31,6 +31,6 @@ jobs:
       steps:
       - uses: actions/download-artifact@v8
           with:
-          name: my-artifact
+            name: my-artifact
       - name: Display structure of downloaded files
         run: ls -R

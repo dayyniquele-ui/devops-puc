@@ -1,7 +1,9 @@
 name: Continuos Delivery workflow
 permissions:
   contents: read
-  
+  pull-requests: write
+  push: write
+
 on: 
   push:
     branches:  

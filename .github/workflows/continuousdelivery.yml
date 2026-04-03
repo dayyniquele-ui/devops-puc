@@ -1,4 +1,5 @@
-name: Continuos Delivery workflow
+name: Continuous Delivery workflow
+
 permissions:
   contents: read
   pull-requests: write
@@ -7,7 +8,8 @@ permissions:
 on: 
   push:
     branches:  
-    - main 
+      - main 
+
 jobs:
   deliver:
     runs-on: ubuntu-latest
@@ -15,22 +17,21 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v5
       
-      - name: Simulando |Continuos Delivery
+      - name: Simulando Continuous Delivery
         uses: actions/upload-artifact@v4
         with:
           name: projetozipado.zip
           path: |
             **.py
-            REDME.md
+            README.md
   
-
   deploy:
     needs: deliver
     runs-on: ubuntu-latest
     steps:
-      steps:
-      - uses: actions/download-artifact@v8
-          with:
-            name: my-artifact
+      - uses: actions/download-artifact@v4
+        with:
+          name: projetozipado.zip
+
       - name: Display structure of downloaded files
         run: ls -R

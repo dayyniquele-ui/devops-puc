@@ -31,4 +31,4 @@ jobs:
          uses: docker/build-push-action@v7
          with:
            push: false
-           tags: user/app:latest
+           tags: app:latest

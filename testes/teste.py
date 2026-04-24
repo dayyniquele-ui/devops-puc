@@ -1,10 +1,10 @@
 from src.main import *
-from unittest import patch
+from unittest.mock import patch
+
 
 def teste_root():
     assert root() == {"message": "Hello World"}
   
-
 def teste_funcaoteste2 ():
     with patch('src.main.random.randint', return_value=42):
         result = funcaoteste2() 
@@ -12,7 +12,7 @@ def teste_funcaoteste2 ():
 
 def teste_create_estudante():
     estudante_teste = Estudante(id=1, nome="Dayanna", curso="ADS", idade=35)
-    assert estudante_teste == create_estudante()
+    assert estudante_teste == create_estudante(estudante_teste)
 
 def teste_update_estudante():
     estudante_teste = Estudante(id=1, nome="Dayanna", curso="ADS", idade=35)

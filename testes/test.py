@@ -36,3 +36,4 @@ async def test_update_estudante():
 async def test_delete_estudante():
     result = await delete_estudante(1)
     assert result == {"estudante_id": 1, "message": "Estudante deletado com sucesso"}
+    

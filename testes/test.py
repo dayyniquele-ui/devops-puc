@@ -27,7 +27,9 @@ async def test_create_estudante():
 async def test_update_estudante():
     estudante_teste = Estudante(id=1, nome="Dayanna", curso="ADS", idade=35)
     result = await update_estudante(1, estudante_teste)
-    assert estudante_teste == result
+
+    assert result["estudante"] == estudante_teste
+    assert result["estudante_id"] == 1
 
 
 @pytest.mark.asyncio

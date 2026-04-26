@@ -6,14 +6,7 @@ from unittest.mock import patch
 @pytest.mark.asyncio
 async def test_root():
     result = await root()
-    assert result == {"message": "Hello World"}
-
-
-@pytest.mark.asyncio
-async def test_funcaoteste2():
-    with patch('src.main.random.randint', return_value=42):
-        result = await funcaoteste2()
-    assert result == {"teste1": True, "num_aleatorio": 42}
+    assert result == {"message": "Bem Vinda Dayanna"}
 
 
 @pytest.mark.asyncio
@@ -24,15 +17,39 @@ async def test_create_estudante():
 
 
 @pytest.mark.asyncio
-async def test_update_estudante():
-    estudante_teste = Estudante(id=1, nome="Dayanna", curso="ADS", idade=35)
-    result = await update_estudante(1, estudante_teste)
+async def test_get_estudante():
+    estudante_teste = Estudante(id=2, nome="Ana", curso="ADS", idade=22)
+    
+    await create_estudante(estudante_teste)
+    result = await get_estudante(2)
 
-    assert result["estudante"] == estudante_teste
-    assert result["estudante_id"] == 1
+    assert result == estudante_teste
+
+
+@pytest.mark.asyncio
+async def test_get_estudante_inexistente():
+    result = await get_estudante(999)
+    assert result is None
+
+
+@pytest.mark.asyncio
+async def test_update_estudante():
+    estudante_teste = Estudante(id=3, nome="João", curso="ADS", idade=30)
+    
+    await create_estudante(estudante_teste)
+
+    estudante_atualizado = Estudante(id=3, nome="João Silva", curso="ADS", idade=31)
+    result = await update_estudante(3, estudante_atualizado)
+
+    assert result["estudante"] == estudante_atualizado
+    assert result["estudante_id"] == 3
 
 
 @pytest.mark.asyncio
 async def test_delete_estudante():
-    result = await delete_estudante(1)
-    assert result == {"estudante_id": 1, "message": "Estudante deletado com sucesso"}
+    estudante_teste = Estudante(id=4, nome="Carlos", curso="ADS", idade=40)
+
+    await create_estudante(estudante_teste)
+    result = await delete_estudante(4)
+
+    assert result == {"estudante_id": 4, "message": "Estudante deletado com sucesso"}
